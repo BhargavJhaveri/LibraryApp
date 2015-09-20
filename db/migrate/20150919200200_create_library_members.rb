@@ -1,12 +1,18 @@
 class CreateLibraryMembers < ActiveRecord::Migration
-  def change
+   def up
     create_table :library_members do |t|
-    	t.string "email" :limit =>50
-    	t.string "first_name" :limit=>50
-    	t.string "last_name" :limit =>50
-    	t.string "hashedpassword" limit =>50
- 
+      t.column "first_name",:string, :limit =>25
+      t.string "Last_name",:limit =>50
+      t.string "email", :default=>"",:null =>false
+      t.string "password",:limit => 40
       t.timestamps
     end
+
+  
+
+  def down
+  	drop_table :library_members
+  end
+
   end
 end
