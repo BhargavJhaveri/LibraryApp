@@ -11,7 +11,7 @@ class CreateLibraryAdmins < ActiveRecord::Migration
   end
 
   def down
-  	drop_table :users
+  	drop_table :library_admins
   end
 
 end
