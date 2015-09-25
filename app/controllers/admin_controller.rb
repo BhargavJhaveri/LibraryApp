@@ -43,7 +43,7 @@ end
      if @admin.email=='vravi2@ncsu.edu'
       flash[:notice]="you cannot delete preconfigured admin!!!"
       redirect_to(:action =>'index')
-    
+    end
      if @admin===@Admin
       flash[:notice]="you cannot delete yourself !!!"
       redirect_to(:action =>'index')
