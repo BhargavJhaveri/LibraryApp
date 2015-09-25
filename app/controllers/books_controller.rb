@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   end
 
   def create
-     @book=LibraryBook.new(book_params,:status =>'check_in')
+     @book=LibraryBook.new(book_params,:STATUS =>'check_in')
 
     if @book.save
      
