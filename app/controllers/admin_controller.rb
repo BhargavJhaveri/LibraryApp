@@ -40,6 +40,10 @@ end
   def delete
      @Admin = LibraryAdmin.find_by_id(session[:admin_id])
      @admin=LibraryAdmin.find_by_id(params[:id])
+     if @admin.email=='vravi2@ncsu.edu'
+      flash[:notice]="you cannot delete preconfigured admin!!!"
+      redirect_to(:action =>'index')
+    
      if @admin===@Admin
       flash[:notice]="you cannot delete yourself !!!"
       redirect_to(:action =>'index')
