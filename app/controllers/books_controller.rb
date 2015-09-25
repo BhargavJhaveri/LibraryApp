@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   end
 
   def create
-     @book=LibraryBook.new(book_params)
+     @book=LibraryBook.new(book_params,:status =>'check_in')
 
     if @book.save
      
@@ -102,6 +102,6 @@ class BooksController < ApplicationController
 
   private
   def book_params
-    params.require(:book).permit(:ISBN,:TITLE,:AUTHORS,:DESCRIPTION,:STATUS)
+    params.require(:book).permit(:ISBN,:TITLE,:AUTHORS,:DESCRIPTION)
   end
 end
