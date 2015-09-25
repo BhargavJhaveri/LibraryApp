@@ -1,0 +1,10 @@
+<%= form_tag({:action =>'destroymember',:id => @member.id.to_s}) do |f| %>
+
+<p>Are you sure you want  to delete <%=@member.Last_name %> </p>
+<div>
+	<%= submit_tag("Delete member") %>
+</div>
+<% end %>
+
+
+

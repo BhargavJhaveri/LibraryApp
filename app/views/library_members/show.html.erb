@@ -1,2 +1,35 @@
-<h1>LibraryMembers#show</h1>
-<p>Find me in app/views/library_members/show.html.erb</p>
+
+<div class='jumbotron' >
+
+<div class='row'>
+	<div class="col-md-2 col-md-offset-1 ">
+<%=link_to("edit",:action =>'edit',:id => @member.id.to_s) %><br></div>
+<div class="col-md-3 ">
+<%=link_to("logout",:controller =>'login_acess', :action => 'logout') %><br></div>
+<div class="col-md-3 ">
+<%=link_to("checkout history",:action =>'checkout',:id =>@member.id.to_s )%><br></div>
+<div class="col-md-3">
+<p>Hi
+	<%=@member.Last_name %>
+	</p><br>
+</div>
+
+</div>
+</div>
+
+<%=form_tag({:controller =>'books',:action =>'search'}, :method => "get") do %>
+ <div class="input-append">
+<%= label_tag(:search, "Search by Title:") %>
+<%= hidden_field_tag(:id, @member.id.to_s) %>
+  <%=text_field_tag(:search,params[:search],placeholder: "Search books") %>
+  <select name="CATEGORIES">
+  <option value="ISBN">ISBN</option>
+  <option value="TITLE">TITLE</option>
+  <option value="AUTHORS">AUTHORS</option>
+  <option value="DESCRIPTION">DESCRIPTION</option>
+  <option value="STATUS">STATUS</option>
+</select>
+
+<%=submit_tag("Search")%>
+
+<% end %> 

@@ -1,0 +1,45 @@
+<h3>Back to List</h3>
+<%=link_to( "Back to List" ,:controller => 'books',:action => 'index')%>
+<div class="row">
+
+	<div class="col-md-6 col-md-offset-1">
+<h1>New book form</h1>
+
+<%= form_for(:book ,:url=> {:controller => 'books',:action => 'create'}) do |f| %>
+<table>
+<tr>
+<td>ISBN</td>
+<td><%= f.text_field(:ISBN) %></td>
+</tr>
+<tr>
+<td>TITLE</td>
+<td><%= f.text_field(:TITLE) %></td>
+</tr>
+<tr>
+<td>AUTHOR</td>
+<td><%= f.text_field(:AUTHORS) %></td>
+</tr>
+<tr>
+<td>DESCRIPTION</td>
+<td><%= f.text_field(:DESCRIPTION)%></td>
+</tr>
+<tr>
+<td>STATUS</td>
+<td></td>
+</tr>
+<tr>
+	<td>
+ <select name="book[STATUS]">
+  <option value="checked_out">checked out</option>
+  <option value="check_in">checked in</option>
+ </td>
+</select>
+</tr>
+<tr>
+<td>
+<%=submit_tag("create book") %> </td>
+</tr>
+</table>
+<% end %>
+</div>
+</div>

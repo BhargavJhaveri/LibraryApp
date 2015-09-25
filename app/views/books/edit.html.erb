@@ -1,0 +1,33 @@
+<h3>Back to List</h3>
+<%=link_to( "Back to List" ,:controller => 'books',:action => 'index')%>
+<div class="row">
+
+	<div class="col-md-6 col-md-offset-1">
+<h1>edit book form</h1>
+
+<%= form_for(:book ,:url=> {:controller =>'books',:action => 'update',:id =>@book.id.to_s}) do |f| %>
+<table>
+<tr>
+<td>ISBN</td>
+<td><%= f.text_field(:ISBN) %></td>
+</tr>
+<tr>
+<td>TITLE</td>
+<td><%= f.text_field(:TITLE) %></td>
+</tr>
+<tr>
+<td>AUTHOR</td>
+<td><%= f.text_field(:AUTHORS) %></td>
+</tr>
+<tr>
+<td>DESCRIPTION</td>
+<td><%= f.text_field(:DESCRIPTION)%></td>
+</tr>
+<tr>
+<td>
+<%=submit_tag("update book") %> </td>
+</tr>
+</table>
+<% end %>
+</div>
+</div>

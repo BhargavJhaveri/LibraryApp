@@ -1,0 +1,40 @@
+<div class='container'>
+<div class='jumbotron'style="background-color:white;">
+	<div class='col-xs-12 col-xs-offset-4'>
+    <h1>LIBRARY SYSTEM</h1>
+</div>
+<div class='jumbotron'style="background-color:white;">
+	</div>
+	<div class='jumbotron'style="background-color:white;">
+	</div>
+	<div class='jumbotron'style="background-color:white;">
+	</div>
+	<div class='jumbotron'style="background-color:white;">
+	</div>
+
+</div>
+</div>
+<div class='jumbotron'style="background-color:white;">
+	
+</div>
+<div class='container'>
+	<div class='row'>
+		<div class='col-xs-6 '>
+			<div class="panel panel-default">
+         <h3> If you are Admin User login here</h3><br>
+<%=link_to('Admin user login',:controller =>'login_acess_admin',:action =>'login',:class => 'btn btn-primary')%><br>
+</div>
+</div>
+<div class='col-xs-6'>
+	<div class="panel panel-default">
+<h3>If you are Library member login here or register</h3>
+
+<%=link_to('Library member login',:controller => 'login_acess',:action =>'login',:class =>'btn btn-primary')%><br>
+<%=link_to('Library member register',:controller => 'library_members' ,:action => 'new',:class =>'btn btn primary') %>
+</div>
+</div>
+</div>
+</div>
+
+
+

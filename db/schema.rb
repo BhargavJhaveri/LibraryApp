@@ -11,37 +11,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150919200200) do
+ActiveRecord::Schema.define(version: 20150925011957) do
 
   create_table "library_admins", force: true do |t|
     t.string   "first_name",      limit: 25
     t.string   "Last_name",       limit: 50
     t.string   "email",                      default: "", null: false
-    t.string   "hashed_password", limit: 40
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "username",        limit: 25
+    t.string   "password_digest", limit: 40
   end
 
   add_index "library_admins", ["username"], name: "index_library_admins_on_username"
 
   create_table "library_books", force: true do |t|
-    t.string   "ISBN",        limit: 50
-    t.string   "TITLE",                  default: "", null: false
-    t.string   "DESCRIPTION", limit: 40
-    t.string   "AUTHORS",     limit: 40
-    t.string   "STATUS",      limit: 40
+    t.string   "ISBN",               limit: 50
+    t.string   "TITLE",                         default: "", null: false
+    t.string   "DESCRIPTION",        limit: 40
+    t.string   "AUTHORS",            limit: 40
+    t.string   "STATUS",             limit: 40
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "Library_members_id"
   end
 
+  add_index "library_books", ["Library_members_id"], name: "index_Library_books_on_Library_members_id"
+
   create_table "library_members", force: true do |t|
-    t.string   "first_name", limit: 25
-    t.string   "Last_name",  limit: 50
-    t.string   "email",                 default: "", null: false
-    t.string   "password",   limit: 40
+    t.string   "first_name",      limit: 25
+    t.string   "Last_name",       limit: 50
+    t.string   "email",                      default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password_digest", limit: 40
+  end
+
+  create_table "relationships", force: true do |t|
+    t.string   "ISBN"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "Status",     limit: 10
   end
 
 end

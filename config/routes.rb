@@ -1,7 +1,21 @@
 Rails.application.routes.draw do
+  
+  
+
+  get 'login_acess_admin/login'
+
+  get 'login_acess_admin/attempt_login'
+
+  get 'login_acess_admin/logout'
+
+  root 'home#index'
+  get 'library_members',:to => "login_acess#login"
+
+  
+
   #get 'admin/index'
-  root "admin#index"
-  match ':controller(/:action(/:id))', :via => :get
+
+  match ':controller(/:action(/:id))', :via => [:get,:post]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

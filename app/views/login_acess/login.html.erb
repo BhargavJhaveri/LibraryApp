@@ -1,0 +1,24 @@
+<%=link_to('Back to Home Page',:controller =>'home',:action =>'index',:class => 'btn btn-sucess')%>
+
+<div class="row">
+
+	<div class="col-md-6 col-md-offset-1">
+<h1>Login</h1>
+<%=form_tag(:action => 'attempt_login') %>
+	<table>
+		<tr>
+			<td><%= label_tag(:email) %></td>
+			<td><%= text_field_tag(:email) %></td>
+		</tr>
+		<tr>
+			<td><%= label_tag(:password) %></td>
+			<td><%= password_field_tag(:password) %></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td><%=submit_tag("Log IN",class: "btn btn-primary") %></td>
+		</tr>
+	</table>
+</div>
+</div>
+

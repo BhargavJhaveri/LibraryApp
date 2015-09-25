@@ -1,2 +1,29 @@
-<h1>LibraryMembers#edit</h1>
-<p>Find me in app/views/library_members/edit.html.erb</p>
+<div class="row">
+
+	<div class="col-md-6 col-md-offset-1">
+<h1>Edit Form</h1>
+
+<%= form_for(:member ,:url=> {:controller =>'library_members',:action => 'update',:id =>@member.id.to_s}) do |f| %>
+<table>
+<tr>
+<td>Firstname</td>
+<td><%= f.text_field(:first_name) %></td>
+</tr>
+<tr>
+<td>Lastname</td>
+<td><%= f.text_field(:Last_name) %></td>
+</tr>
+<tr>
+<td>Email</td>
+<td><%= f.text_field(:email) %></td>
+</tr>
+<tr>
+<td>Password</td>
+<td><%= f.text_field(:password)%></td>
+</tr>
+<tr>
+<td>
+<%=submit_tag("Edit",class: "btn btn-primary") %> </td>
+</tr>
+</table>
+<% end %>

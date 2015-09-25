@@ -1,0 +1,18 @@
+<h3>Back to List</h3>
+<%=link_to("Back to List" ,:controller => 'admin',:action => 'indexmember')%>
+<h1>Member Details</h1>
+<table class="table">
+	<tr>
+		<th>First_name</th>
+		<td><%=@member.first_name %> </td>
+	</tr>
+	<tr>
+		<th>Last_name</th>
+		<td><%=@member.Last_name %> </td>
+	</tr>
+	<tr>
+		<th>email</th>
+		<td><%=@member.email %> </td>
+	</tr>
+	
+	</table>

@@ -1,0 +1,50 @@
+<h1>Link to your dashboard</h1>
+<%=link_to("Link to your dashboard",:action =>'show',:id =>@member.id.to_s)%>
+
+<h1>THESE ARE THE BOOKS THAT ARE CHECKED OUT AND NOT CHECKED IN</h1>
+	<table class="table">
+	<tr>
+		
+		<th>TITLE</th>
+		<th>AUTHORS</th>
+		<th>DESCRIPTION</th>
+		<th>ISBN</th>
+		<th>ISSUED AT</th>
+		<th>CHECKIN</th>
+		
+	</tr>
+   <%@array.each do |f| %>
+
+	<tr>
+	<td><%=f.TITLE %></td>
+	<td><%=f.AUTHORS %></td>
+	<td><%=f.DESCRIPTION %></td>
+	<td><%=f.ISBN %></td>
+	<td><%=f.created_at %></td>
+		<td><%=link_to("checkin",:controller =>'books',:action => 'checkin',:email => @member.email,:id => f.id.to_s)%></td>
+	</tr>
+	<% end %>
+	</table>
+	
+<h1>THESE ARE THE BOOKS THAT ARE CHECKED OUT IN PAST</h1>
+<table class="table">
+	<tr>
+		
+		<th>TITLE</th>
+		<th>AUTHORS</th>
+		<th>DESCRIPTION</th>
+		<th>ISBN</th>
+		
+		
+	</tr>
+
+	<%@find1.each do |f| %>
+	<tr>
+	<td><%=f.TITLE %></td>
+	<td><%=f.AUTHORS %></td>
+	<td><%=f.DESCRIPTION %></td>
+	<td><%=f.ISBN %></td>
+	
+	</tr>
+	<% end %>
+    </table>

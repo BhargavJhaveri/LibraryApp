@@ -1,0 +1,24 @@
+<h3>Back to List</h3>
+<%=link_to("Back to List" ,:controller => 'books',:action => 'index')%>
+<table class="table">
+	<tr>
+		<th>Title</th>
+		<td><%=@book.TITLE %> </td>
+	</tr>
+	<tr>
+		<th>Author</th>
+		<td><%=@book.AUTHORS %> </td>
+	</tr>
+	<tr>
+		<th>Description</th>
+		<td><%=@book.DESCRIPTION %> </td>
+	</tr>
+	<tr>
+		<th>ISBN</th>
+		<td><%=@book.ISBN %> </td>
+	</tr>
+	<tr>
+		<th>Status</th>
+		<td><%=@book.STATUS %> </td>
+	</tr>
+	</table>

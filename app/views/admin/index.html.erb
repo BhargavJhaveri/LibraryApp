@@ -1,5 +1,50 @@
-<h1>Admin#index</h1>
-<p>Find me in app/views/admin/index.html.erb</p>
-<a href ="/admin/hello"> Hello page </a><br/>
+<div class='jumbotron' >
+<div class='row'>
 
-<%= link_to('hello page 2',{:action =>'hello',:page =>10,:user=>'ram',:id=>100}) %>
+<div class="col-xs-2 " >
+<%=link_to('Edit your profile',:action => 'edit') %><br></div>
+<div class="col-xs-2 ">
+<%=link_to('manage books',:action => 'managebooks') %><br></div>
+<div class="col-xs-2 ">
+<%=link_to('manage library members',:action => 'indexmember') %><br></div>
+<div class="col-xs-2 ">
+<%= link_to("Add new Library Admin",:action => 'new')%></div>
+
+<div class="col-xs-2">
+<%=link_to('logout',:controller => 'LoginAcessAdmin',:action =>'logout') %></div>
+<div class="col-xs-2">
+<p>Hi
+	<%=@Admin.Last_name %>
+	</p><br>
+</div>
+
+
+</div>
+</div>
+
+<h1>Other Admins</h1>
+<table class='table'>
+	<tr>
+		
+		<th>First name</th>
+		<th>Last name</th>
+		<th>Email</th>
+		
+	</tr>
+	<%@admin.each do |admin| %>
+	<tr>
+	<td><%=admin.first_name%></td>
+	<td><%=admin.Last_name %></td>
+	<td><%=admin.email %></td>
+	
+	<td>
+	<%= link_to("show",:action =>'show',:id =>admin.id.to_s) %>
+     <%= link_to("edit",:action =>'edit',:id =>admin.id.to_s ) %>
+     <%= link_to("delete",:action =>'delete',:id =>admin.id.to_s) %>
+
+ </td>
+     </tr>
+     <% end %>
+     </table>
+
+

@@ -1,0 +1,10 @@
+<%= form_tag({:action =>'destroy',:id => @book.id.to_s}) do |f| %>
+
+<p>Are you sure you want  to delete <%=@book.TITLE %> </p>
+<div>
+	<%= submit_tag("Delete book") %>
+</div>
+<% end %>
+
+
+

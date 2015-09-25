@@ -1,0 +1,29 @@
+<h3>Back to List</h3>
+<%=link_to("Back to Dashboard" ,:controller => 'admin',:action => 'indexmember')%>
+<div class="row">
+
+	<div class="col-md-6 col-md-offset-1">
+<h1>Edit Form</h1>
+
+<%= form_for(:member ,:url=> {:controller =>'admin',:action => 'updatemember',:id =>@member.id.to_s}) do |f| %>
+<table>
+<tr>
+<td>Firstname</td>
+<td><%= f.text_field(:first_name) %></td>
+</tr>
+<tr>
+<td>Lastname</td>
+<td><%= f.text_field(:Last_name) %></td>
+</tr>
+<tr>
+<td>Email</td>
+<td><%= f.text_field(:email) %></td>
+</tr>
+<tr>
+<td>
+<%=submit_tag("update",:class =>"btn btn-primary") %> </td>
+</tr>
+</table>
+<% end %>
+</div>
+</div>

@@ -1,0 +1,17 @@
+<h3>Back to dashboard</h3>
+<%=link_to("Back to Dashboard", :controller => 'admin',:action => 'index')%>
+<table class='table'>
+	<tr>
+		<th>First_name</th>
+		<td><%=@admin.first_name %> </td>
+	</tr>
+	<tr>
+		<th>Last_name</th>
+		<td><%=@admin.Last_name %> </td>
+	</tr>
+	<tr>
+		<th>email</th>
+		<td><%=@admin.email %> </td>
+	</tr>
+	
+	</table>
