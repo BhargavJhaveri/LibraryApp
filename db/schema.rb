@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150925011957) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "library_admins", force: true do |t|
     t.string   "first_name",      limit: 25
     t.string   "Last_name",       limit: 50
@@ -23,7 +26,7 @@ ActiveRecord::Schema.define(version: 20150925011957) do
     t.string   "password_digest", limit: 40
   end
 
-  add_index "library_admins", ["username"], name: "index_library_admins_on_username"
+  add_index "library_admins", ["username"], name: "index_library_admins_on_username", using: :btree
 
   create_table "library_books", force: true do |t|
     t.string   "ISBN",               limit: 50
@@ -33,10 +36,10 @@ ActiveRecord::Schema.define(version: 20150925011957) do
     t.string   "STATUS",             limit: 40
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "Library_members_id"
+    t.integer  "library_members_id"
   end
 
-  add_index "library_books", ["Library_members_id"], name: "index_Library_books_on_Library_members_id"
+  add_index "library_books", ["library_members_id"], name: "index_library_books_on_library_members_id", using: :btree
 
   create_table "library_members", force: true do |t|
     t.string   "first_name",      limit: 25
