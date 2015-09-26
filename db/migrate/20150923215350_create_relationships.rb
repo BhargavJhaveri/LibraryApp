@@ -1,7 +1,7 @@
 class CreateRelationships < ActiveRecord::Migration
   def change
     create_table :relationships do |t|
-    	t.text :ISBN
+    	t.text :isbn
     	t.text  :email
 
       t.timestamps

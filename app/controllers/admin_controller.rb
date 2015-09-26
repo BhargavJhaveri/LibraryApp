@@ -116,8 +116,8 @@ def checkoutadmin
     @find=Relationship.where(email: i).order("created_at DESC")
     @array=[]
     @find.each do |book|
-       bookobject=LibraryBook.find_by ISBN: book.ISBN
-       if bookobject.STATUS=='checked_out'
+       bookobject=LibraryBook.find_by isbn: book.isbn
+       if bookobject.status=='checked_out'
           @array <<bookobject
         end
       end
@@ -131,9 +131,9 @@ end
     @array=[]
     @find1=[]
     @find.each do |book|
-       bookobject=LibraryBook.find_by ISBN: book.ISBN
+       bookobject=LibraryBook.find_by isbn: book.isbn
        @find1<<bookobject
-       if bookobject.STATUS=='checked_out' && book.Status=='yes'
+       if bookobject.status=='checked_out' && book.status=='yes'
           @array <<bookobject
         end
       end
@@ -152,13 +152,13 @@ end
 
     @book=LibraryBook.find_by_id(params[:id])
     
-    @book.STATUS='checked_out'
+    @book.status='checked_out'
     @book.save
     @admin=LibraryAdmin.find_by(:email => params[:email])
     @admin.LibraryBooks << @book
-    k=@book.ISBN
+    k=@book.isbn
     l=@admin.email
-    Relationship.create(:ISBN => k,:email =>l,:Status =>'yes')
+    Relationship.create(:isbn => k,:email =>l,:status =>'yes')
 
     flash[:notice]="you have Sucessfully checked out a book"
 
@@ -169,12 +169,12 @@ end
     @book=LibraryBook.find_by_id(params[:id])
     @admin=LibraryAdmin.find_by(:email => params[:email])
     @admin.LibraryBooks.delete(@book)
-    @book.STATUS='check_in'
+    @book.status='check_in'
     @book.save
-    k=@book.ISBN
-    @relation=Relationship.where(:ISBN =>k)
+    k=@book.isbn
+    @relation=Relationship.where(:isbn =>k)
     @relation.each do |relation| 
-      relation.Status='no'
+      relation.status='no'
       relation.save
    
     

@@ -2,14 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="129e156f-6642-49d5-a243-1d85d7312d91" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20150919195750_create_library_books.rb" afterPath="$PROJECT_DIR$/db/migrate/20150919195750_create_library_books.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20150923215350_create_relationships.rb" afterPath="$PROJECT_DIR$/db/migrate/20150923215350_create_relationships.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20150925011957_modifyrelationships.rb" afterPath="$PROJECT_DIR$/db/migrate/20150925011957_modifyrelationships.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/admin_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/admin_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/books_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/books_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/books/delete.html.erb" afterPath="$PROJECT_DIR$/app/views/books/delete.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/admin/checkouthistory.html.erb" afterPath="$PROJECT_DIR$/app/views/admin/checkouthistory.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/books/checkouthistory.html.erb" afterPath="$PROJECT_DIR$/app/views/books/checkouthistory.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/books/edit.html.erb" afterPath="$PROJECT_DIR$/app/views/books/edit.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/admin/index.html.erb" afterPath="$PROJECT_DIR$/app/views/admin/index.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/books/index.html.erb" afterPath="$PROJECT_DIR$/app/views/books/index.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/library_book.rb" afterPath="$PROJECT_DIR$/app/models/library_book.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/library_members_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/library_members_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/books/new.html.erb" afterPath="$PROJECT_DIR$/app/views/books/new.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/admin/search.html.erb" afterPath="$PROJECT_DIR$/app/views/admin/search.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/books/search.html.erb" afterPath="$PROJECT_DIR$/app/views/books/search.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/books/show.html.erb" afterPath="$PROJECT_DIR$/app/views/books/show.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/library_members/show.html.erb" afterPath="$PROJECT_DIR$/app/views/library_members/show.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="LibraryApp.iws" />
@@ -41,7 +49,7 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
               <folding>
-                <marker date="1443230168960" expanded="true" signature="1065:1099" placeholder="if ... end" />
+                <marker date="1443236129621" expanded="true" signature="1065:1099" placeholder="if ... end" />
               </folding>
             </state>
           </provider>
@@ -60,8 +68,8 @@
       <file leaf-file-name="new.html.erb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/books/new.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4318766">
-              <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
+            <state vertical-scroll-proportion="0.5192802">
+              <caret line="35" column="29" selection-start-line="0" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -740,7 +748,13 @@
       <option name="project" value="LOCAL" />
       <updated>1443223720260</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="htriuklhjh">
+      <created>1443230221182</created>
+      <option name="number" value="00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1443230221183</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -780,7 +794,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="errors removed" />
     <MESSAGE value="Merge branch 'master' of https://github.com/BhargavJhaveri/LibraryApp&#10;&#10;# Conflicts:&#10;#&#9;app/models/library_book.rb&#10;" />
     <MESSAGE value="New controller for members" />
     <MESSAGE value="New view members" />
@@ -805,7 +818,8 @@
     <MESSAGE value="htriukl" />
     <MESSAGE value="htriuklh" />
     <MESSAGE value="htriuklhj" />
-    <option name="LAST_COMMIT_MESSAGE" value="htriuklhj" />
+    <MESSAGE value="htriuklhjh" />
+    <option name="LAST_COMMIT_MESSAGE" value="htriuklhjh" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -833,7 +847,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
-            <marker date="1443230168960" expanded="true" signature="1065:1099" placeholder="if ... end" />
+            <marker date="1443236129621" expanded="true" signature="1065:1099" placeholder="if ... end" />
           </folding>
         </state>
       </provider>
@@ -883,7 +897,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
           <folding>
-            <marker date="1443230168960" expanded="true" signature="1065:1099" placeholder="if ... end" />
+            <marker date="1443236129621" expanded="true" signature="1065:1099" placeholder="if ... end" />
           </folding>
         </state>
       </provider>
@@ -1117,7 +1131,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
           <folding>
-            <marker date="1443230168960" expanded="true" signature="1065:1099" placeholder="if ... end" />
+            <marker date="1443236129621" expanded="true" signature="1065:1099" placeholder="if ... end" />
           </folding>
         </state>
       </provider>
@@ -1132,8 +1146,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/books/new.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4318766">
-          <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
+        <state vertical-scroll-proportion="0.5192802">
+          <caret line="35" column="29" selection-start-line="0" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
           <folding />
         </state>
       </provider>

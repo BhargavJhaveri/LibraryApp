@@ -1,14 +1,14 @@
 <table class="table">
 	<tr>
 		
-		<th>ISBN</th>
+		<th>isbn</th>
 		<th>ISSUED BY</th>
 	
 		
 	</tr>
 	<%@find.each do |f| %>
 	<tr>
-	<td><%=f.ISBN%></td>
+	<td><%=f.isbn%></td>
 	<td><%=f.email %></td>
 	 </tr>
      <% end %>

@@ -13,7 +13,7 @@ class BooksController < ApplicationController
       flash[:notice]="You have sucessfully added a book"
       redirect_to(:action => 'show',:id => @book.id.to_s,:email =>@admin.email)
     else
-      flash[:notice]="The book with ISBN is already present"
+      flash[:notice]="The book with isbn is already present"
       render('new')
 
       end   
@@ -77,9 +77,9 @@ class BooksController < ApplicationController
     @book.save
     @member=LibraryMember.find_by(:email => params[:email])
     @member.LibraryBooks << @book
-    k=@book.ISBN
+    k=@book.isbn
     l=@member.email
-    Relationship.create(:ISBN => k,:email =>l,:Status =>'yes')
+    Relationship.create(:isbn => k,:email =>l,:Status =>'yes')
     flash[:notice]="you have sucessfully checked out a book"
     redirect_to(:controller =>'library_members',:action =>'show',:id => @member.id.to_s)
   end
@@ -89,8 +89,8 @@ class BooksController < ApplicationController
     @book.STATUS='check_in'
     @book.save
     @member.LibraryBooks.delete(@book)
-    k=@book.ISBN
-    @relation=Relationship.where(:ISBN =>k)
+    k=@book.isbn
+    @relation=Relationship.where(:isbn =>k)
     @relation.each do |relation| 
       relation.Status='no'
       relation.save
@@ -104,13 +104,13 @@ class BooksController < ApplicationController
 
   def checkouthistory
     @book=LibraryBook.find_by_id(params[:id])
-    @find=Relationship.where(:ISBN => @book.ISBN).order("created_at DESC")
+    @find=Relationship.where(:isbn => @book.isbn).order("created_at DESC")
 
       end
 
 
   private
   def book_params
-    params.require(:book).permit(:ISBN,:TITLE,:AUTHORS,:DESCRIPTION,:STATUS)
+    params.require(:book).permit(:isbn,:title,:authors,:description,:status)
   end
 end
