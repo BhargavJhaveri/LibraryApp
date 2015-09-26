@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150925011957) do
+ActiveRecord::Schema.define(version: 20150926141819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,17 +29,19 @@ ActiveRecord::Schema.define(version: 20150925011957) do
   add_index "library_admins", ["username"], name: "index_library_admins_on_username", using: :btree
 
   create_table "library_books", force: true do |t|
-    t.text     "ISBN"
-    t.text     "TITLE",              default: "", null: false
-    t.text     "DESCRIPTION"
-    t.text     "AUTHORS"
-    t.text     "STATUS"
+    t.text     "isbn"
+    t.text     "title",             default: "", null: false
+    t.text     "description"
+    t.text     "authors"
+    t.text     "status"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "library_members_id"
+    t.integer  "library_member_id"
+    t.integer  "library_admin_id"
   end
 
-  add_index "library_books", ["library_members_id"], name: "index_library_books_on_library_members_id", using: :btree
+  add_index "library_books", ["library_admin_id"], name: "index_library_books_on_library_admin_id", using: :btree
+  add_index "library_books", ["library_member_id"], name: "index_library_books_on_library_member_id", using: :btree
 
   create_table "library_members", force: true do |t|
     t.text     "first_name"
@@ -51,11 +53,11 @@ ActiveRecord::Schema.define(version: 20150925011957) do
   end
 
   create_table "relationships", force: true do |t|
-    t.text     "ISBN"
+    t.text     "isbn"
     t.text     "email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "Status"
+    t.text     "status"
   end
 
 end

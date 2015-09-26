@@ -1,6 +1,7 @@
 # This is the Library Book management model class.
 class LibraryBook < ActiveRecord::Base
-	belongs_to :LibraryMember #"foreign key"
+	belongs_to :library_member,:foreign_key => "library_member_id"
+	belongs_to :library_admin  ,:foreign_key => "library_admin_id"
 	validates_presence_of :isbn
     validates_presence_of :title
     validates_presence_of :authors

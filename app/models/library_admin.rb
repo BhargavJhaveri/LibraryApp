@@ -1,5 +1,7 @@
 #This is the Library Admin Model class which is used for the management of all the admins.
 class LibraryAdmin < ActiveRecord::Base
+	has_many :library_books
+	
 	has_secure_password
 	 validates_presence_of :first_name
     validates_presence_of :Last_name

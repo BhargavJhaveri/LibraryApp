@@ -73,26 +73,26 @@ class BooksController < ApplicationController
 
     @book=LibraryBook.find_by_id(params[:id])
     
-    @book.STATUS='checked_out'
+    @book.status='checked_out'
     @book.save
     @member=LibraryMember.find_by(:email => params[:email])
-
+    @member.library_books << @book
     k=@book.isbn
     l=@member.email
-    Relationship.create(:isbn => k,:email =>l,:Status =>'yes')
+    Relationship.create(:isbn => k,:email =>l,:status =>'yes')
     flash[:notice]="you have sucessfully checked out a book"
     redirect_to(:controller =>'library_members',:action =>'show',:id => @member.id.to_s)
   end
   def checkin
     @book=LibraryBook.find_by_id(params[:id])
     @member=LibraryMember.find_by(:email => params[:email])
-    @book.STATUS='check_in'
+    @book.status='check_in'
     @book.save
-
+    @member.library_books.delete(@book)
     k=@book.isbn
     @relation=Relationship.where(:isbn =>k)
     @relation.each do |relation| 
-      relation.Status='no'
+      relation.status='no'
       relation.save
     end
     redirect_to(:controller =>'library_members',:action =>'show',:id => @member.id.to_s)
