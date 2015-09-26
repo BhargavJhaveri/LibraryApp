@@ -33,17 +33,17 @@
 	<td><%=book.ISBN %></td>
 	<td><%=book.STATUS %></td>
 	<td>
-	<%= link_to("show",:action =>'show',:id =>book.id.to_s) %>
-     <%= link_to("edit",:action =>'edit',:id =>book.id.to_s ) %>
-     <%= link_to("delete",:action =>'delete',:id =>book.id.to_s) %>
+	<%= link_to("show",:action =>'show',:id =>book.id.to_s,:email =>@admin.email) %>
+     <%= link_to("edit",:action =>'edit',:id =>book.id.to_s ,:email => @admin.email) %>
+     <%= link_to("delete",:action =>'delete',:id =>book.id.to_s,:email => @admin.email) %>
      <%= link_to("checkouthistory",:controller =>'books',:action =>'checkouthistory',:id =>book.id.to_s) %>
-     <%= link_to("checkin",:controller =>'admin',:action =>'checkin',:id =>book.id.to_s) %>
+     <%= link_to("checkin",:controller =>'admin',:action =>'checkin',:id =>book.id.to_s,:email =>@admin.email ) %>
  </td>
      </tr>
      <% end %>
      </table>
     <h2>Click here to add new book</h2>
-     <%= link_to("Add new book",:action => 'new' ,class: "btn")%>
+     <%= link_to("Add new book",:action => 'new' ,:email =>@admin.email,class: "btn")%>
 
 
 

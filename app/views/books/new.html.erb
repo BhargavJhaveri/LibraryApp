@@ -1,11 +1,15 @@
 <h3>Back to List</h3>
-<%=link_to( "Back to List" ,:controller => 'books',:action => 'index')%>
+<%=link_to( "Back to List" ,:controller => 'books',:action => 'index',:id =>@admin.id.to_s)%>
 <div class="row">
 
 	<div class="col-md-6 col-md-offset-1">
 <h1>New book form</h1>
 
 <%= form_for(:book ,:url=> {:controller => 'books',:action => 'create'}) do |f| %>
+
+<%= hidden_field_tag(:email, @admin.email) %>
+
+
 <table>
 <tr>
 <td>ISBN</td>

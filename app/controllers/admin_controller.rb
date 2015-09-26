@@ -61,7 +61,8 @@ end
   end
   
   def managebooks
-    redirect_to(:controller => 'Books',:action =>'index')
+     @admin=LibraryAdmin.find_by_id(params[:id])
+    redirect_to(:controller => 'Books',:action =>'index',:id => @admin.id.to_s)
   end
   
   def indexmember
@@ -154,6 +155,7 @@ end
     @book.STATUS='checked_out'
     @book.save
     @admin=LibraryAdmin.find_by(:email => params[:email])
+    @admin.LibraryBooks << @book
     k=@book.ISBN
     l=@admin.email
     Relationship.create(:ISBN => k,:email =>l,:Status =>'yes')
@@ -165,6 +167,8 @@ end
 
    def checkin
     @book=LibraryBook.find_by_id(params[:id])
+    @admin=LibraryAdmin.find_by(:email => params[:email])
+    @admin.LibraryBooks.delete(@book)
     @book.STATUS='check_in'
     @book.save
     k=@book.ISBN

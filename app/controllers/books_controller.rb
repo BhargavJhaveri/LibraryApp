@@ -1,15 +1,17 @@
 class BooksController < ApplicationController
   def new
+    @admin=LibraryAdmin.find_by(:email => params[:email])
      @book=LibraryBook.new
   end
 
   def create
      @book=LibraryBook.new(book_params)
+     @admin=LibraryAdmin.find_by(:email => params[:email])
 
     if @book.save
      
       flash[:notice]="You have sucessfully added a book"
-      redirect_to(:action => 'show',:id => @book.id.to_s)
+      redirect_to(:action => 'show',:id => @book.id.to_s,:email =>@admin.email)
     else
       flash[:notice]="The book with ISBN is already present"
       render('new')
@@ -17,14 +19,16 @@ class BooksController < ApplicationController
       end   
   end
  def edit
+@admin=LibraryAdmin.find_by(:email => params[:email])
     @book=LibraryBook.find_by_id(params[:id])
   end
 
   def update
+    @admin=LibraryAdmin.find_by(:email => params[:email])
     @book=LibraryBook.find_by_id(params[:id])
     if  @book.update(book_params)
       flash[:notice]="you have sucessfully update the book"
-       redirect_to(:action => 'show',:id => @book.id.to_s)
+       redirect_to(:action => 'show',:id => @book.id.to_s,:email => @admin.email)
     else
       @book=LibraryBook.find_by_id(params[:id])
       flash[:notice]="Try Again"
@@ -35,21 +39,24 @@ class BooksController < ApplicationController
   end
 
   def delete
+    @admin=LibraryAdmin.find_by(:email => params[:email])
     @book=LibraryBook.find_by_id(params[:id])
   end
 
   def destroy
+    @admin=LibraryAdmin.find_by(:email => params[:email])
      LibraryBook.find_by_id(params[:id]).destroy
      flash[:notice]="sucessfully destroyed the book"
-     redirect_to(:action =>'index')
+     redirect_to(:action =>'index',:id =>@admin.id.to_s)
   end
 
   def index
     @books=LibraryBook.order("created_at ASC")
+    @admin=LibraryAdmin.find_by_id(params[:id])
   end
 
   def show
-  
+    @admin=LibraryAdmin.find_by(:email => params[:email])
     @book=LibraryBook.find_by_id(params[:id])
 
   end
@@ -69,6 +76,7 @@ class BooksController < ApplicationController
     @book.STATUS='checked_out'
     @book.save
     @member=LibraryMember.find_by(:email => params[:email])
+    @member.LibraryBooks << @book
     k=@book.ISBN
     l=@member.email
     Relationship.create(:ISBN => k,:email =>l,:Status =>'yes')
@@ -80,6 +88,7 @@ class BooksController < ApplicationController
     @member=LibraryMember.find_by(:email => params[:email])
     @book.STATUS='check_in'
     @book.save
+    @member.LibraryBooks.delete(@book)
     k=@book.ISBN
     @relation=Relationship.where(:ISBN =>k)
     @relation.each do |relation| 
