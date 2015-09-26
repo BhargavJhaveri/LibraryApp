@@ -76,7 +76,7 @@ class BooksController < ApplicationController
     @book.STATUS='checked_out'
     @book.save
     @member=LibraryMember.find_by(:email => params[:email])
-    @member.LibraryBooks << @book
+
     k=@book.isbn
     l=@member.email
     Relationship.create(:isbn => k,:email =>l,:Status =>'yes')
@@ -88,7 +88,7 @@ class BooksController < ApplicationController
     @member=LibraryMember.find_by(:email => params[:email])
     @book.STATUS='check_in'
     @book.save
-    @member.LibraryBooks.delete(@book)
+
     k=@book.isbn
     @relation=Relationship.where(:isbn =>k)
     @relation.each do |relation| 

@@ -155,7 +155,7 @@ end
     @book.status='checked_out'
     @book.save
     @admin=LibraryAdmin.find_by(:email => params[:email])
-    @admin.LibraryBooks << @book
+
     k=@book.isbn
     l=@admin.email
     Relationship.create(:isbn => k,:email =>l,:status =>'yes')
@@ -168,7 +168,7 @@ end
    def checkin
     @book=LibraryBook.find_by_id(params[:id])
     @admin=LibraryAdmin.find_by(:email => params[:email])
-    @admin.LibraryBooks.delete(@book)
+
     @book.status='check_in'
     @book.save
     k=@book.isbn
