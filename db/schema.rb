@@ -11,51 +11,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150925011957) do
+ActiveRecord::Schema.define(version: 20150926141819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "library_admins", force: true do |t|
-    t.string   "first_name",      limit: 25
-    t.string   "Last_name",       limit: 50
-    t.string   "email",                      default: "", null: false
+    t.text     "first_name"
+    t.text     "Last_name"
+    t.text     "email",           default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "username",        limit: 25
-    t.string   "password_digest", limit: 40
+    t.text     "username"
+    t.text     "password_digest"
   end
 
   add_index "library_admins", ["username"], name: "index_library_admins_on_username", using: :btree
 
   create_table "library_books", force: true do |t|
-    t.string   "ISBN",               limit: 50
-    t.string   "TITLE",                         default: "", null: false
-    t.string   "DESCRIPTION",        limit: 40
-    t.string   "AUTHORS",            limit: 40
-    t.string   "STATUS",             limit: 40
+    t.text     "isbn"
+    t.text     "title",             default: "", null: false
+    t.text     "description"
+    t.text     "authors"
+    t.text     "status"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "library_members_id"
+    t.integer  "library_member_id"
+    t.integer  "library_admin_id"
   end
 
-  add_index "library_books", ["library_members_id"], name: "index_library_books_on_library_members_id", using: :btree
+  add_index "library_books", ["library_admin_id"], name: "index_library_books_on_library_admin_id", using: :btree
+  add_index "library_books", ["library_member_id"], name: "index_library_books_on_library_member_id", using: :btree
 
   create_table "library_members", force: true do |t|
-    t.string   "first_name",      limit: 25
-    t.string   "Last_name",       limit: 50
-    t.string   "email",                      default: "", null: false
+    t.text     "first_name"
+    t.text     "Last_name"
+    t.text     "email",           default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "password_digest", limit: 40
+    t.text     "password_digest"
   end
 
   create_table "relationships", force: true do |t|
-    t.string   "ISBN"
-    t.string   "email"
+    t.text     "isbn"
+    t.text     "email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "Status",     limit: 10
+    t.text     "status"
   end
 
 end

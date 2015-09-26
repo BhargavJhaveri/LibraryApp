@@ -60,9 +60,9 @@ class LibraryMembersController < ApplicationController
     @array=[]
     @find.each do |book|
 
-       bookobject=LibraryBook.find_by ISBN: book.ISBN
+       bookobject=LibraryBook.find_by isbn: book.isbn
          @find1<<bookobject
-       if bookobject.STATUS=='checked_out' && book.Status=='yes'
+       if bookobject.status=='checked_out' && book.status=='yes'
           @array <<bookobject
         end
       end

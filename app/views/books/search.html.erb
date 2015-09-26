@@ -3,22 +3,29 @@
 <table class="table">
 	<tr>
 		
-		<th>ISBN</th>
-		<th>TITLE</th>
+		<th>isbn</th>
+		<th>title</th>
 		<th>AUTHOR</th>
-		<th>DESCRIPTION</th>
-		<th>STATUS</th>
+		<th>description</th>
+		<th>status</th>
+		<th>issuedby</th>
+		<th>checkout</th>
 		
 	</tr>
 	<%@books.each do |book| %>
 	<tr>
-	<td><%=book.ISBN%></td>
-	<td><%=book.TITLE %></td>
-	<td><%=book.AUTHORS %></td>
-	<td><%=book.DESCRIPTION %></td>
-	<td><%=book.STATUS %></td>
+	<td><%=book.isbn%></td>
+	<td><%=book.title %></td>
+	<td><%=book.authors %></td>
+	<td><%=book.description %></td>
+	<td><%=book.status %></td>
 	<td>
-	<%if book.STATUS=='check_in'%>
+	<%if book.library_member %>
+	<%=book.library_member.email %>
+     <%end %></td>
+    
+    <td>
+	<%if book.status=='check_in'%>
 	<%=link_to("Checkout",:controller =>'books',:action =>"checkoutbook",:id =>book.id.to_s,:email => @member.email)%>
 	<% end %>
 	

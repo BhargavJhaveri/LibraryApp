@@ -1,5 +1,5 @@
 <%= form_tag({:action =>'destroy',:id => @book.id.to_s}) do |f| %>
-
+<%= hidden_field_tag(:email, @admin.email) %>
 <p>Are you sure you want  to delete <%=@book.TITLE %> </p>
 <div>
 	<%= submit_tag("Delete book") %>

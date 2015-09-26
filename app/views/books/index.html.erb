@@ -3,14 +3,14 @@
 
 <%=form_tag({:controller =>'admin',:action =>'search'}, :method => "get") do %>
  <div class="input-append">
-<%= label_tag(:search, "Search by Title:") %>
+<%= label_tag(:search, "Search by title:") %>
   <%=text_field_tag(:search,params[:search],placeholder: "Search books") %>
   <select name="CATEGORIES">
-  <option value="ISBN">ISBN</option>
-  <option value="TITLE">TITLE</option>
-  <option value="AUTHORS">AUTHORS</option>
-  <option value="DESCRIPTION">DESCRIPTION</option>
-  <option value="STATUS">STATUS</option>
+  <option value="isbn">isbn</option>
+  <option value="title">title</option>
+  <option value="authors">authors</option>
+  <option value="description">description</option>
+  <option value="status">status</option>
 </select>
 <%=submit_tag("Search")%>
 
@@ -19,31 +19,31 @@
 <table class="table">
 	<tr>
 		
-		<th>Title</th>
+		<th>title</th>
 		<th>AUTHOR</th>
-		<th>DESCRIPTION</th>
-		<th>ISBN</th>
-		<th>STATUS</th>
+		<th>description</th>
+		<th>isbn</th>
+		<th>status</th>
 	</tr>
 	<%@books.each do |book| %>
 	<tr>
-	<td><%=book.TITLE %></td>
-	<td><%=book.AUTHORS %></td>
-	<td><%=book.DESCRIPTION %></td>
-	<td><%=book.ISBN %></td>
-	<td><%=book.STATUS %></td>
+	<td><%=book.title %></td>
+	<td><%=book.authors %></td>
+	<td><%=book.description %></td>
+	<td><%=book.isbn %></td>
+	<td><%=book.status %></td>
 	<td>
-	<%= link_to("show",:action =>'show',:id =>book.id.to_s) %>
-     <%= link_to("edit",:action =>'edit',:id =>book.id.to_s ) %>
-     <%= link_to("delete",:action =>'delete',:id =>book.id.to_s) %>
+	<%= link_to("show",:action =>'show',:id =>book.id.to_s,:email =>@admin.email) %>
+     <%= link_to("edit",:action =>'edit',:id =>book.id.to_s ,:email => @admin.email) %>
+     <%= link_to("delete",:action =>'delete',:id =>book.id.to_s,:email => @admin.email) %>
      <%= link_to("checkouthistory",:controller =>'books',:action =>'checkouthistory',:id =>book.id.to_s) %>
-     <%= link_to("checkin",:controller =>'admin',:action =>'checkin',:id =>book.id.to_s) %>
+     <%= link_to("checkin",:controller =>'admin',:action =>'checkin',:id =>book.id.to_s,:email =>@admin.email ) %>
  </td>
      </tr>
      <% end %>
      </table>
     <h2>Click here to add new book</h2>
-     <%= link_to("Add new book",:action => 'new' ,class: "btn")%>
+     <%= link_to("Add new book",:action => 'new' ,:email =>@admin.email,class: "btn")%>
 
 
 

@@ -1,5 +1,5 @@
 class LibraryMember < ActiveRecord::Base
-	has_many :Librarybooks
+	has_many :library_books
 	has_secure_password
      
     validates_presence_of :first_name

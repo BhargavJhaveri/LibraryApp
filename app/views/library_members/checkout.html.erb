@@ -5,10 +5,10 @@
 	<table class="table">
 	<tr>
 		
-		<th>TITLE</th>
-		<th>AUTHORS</th>
-		<th>DESCRIPTION</th>
-		<th>ISBN</th>
+		<th>title</th>
+		<th>authors</th>
+		<th>description</th>
+		<th>isbn</th>
 		<th>ISSUED AT</th>
 		<th>CHECKIN</th>
 		
@@ -16,10 +16,10 @@
    <%@array.each do |f| %>
 
 	<tr>
-	<td><%=f.TITLE %></td>
-	<td><%=f.AUTHORS %></td>
-	<td><%=f.DESCRIPTION %></td>
-	<td><%=f.ISBN %></td>
+	<td><%=f.title %></td>
+	<td><%=f.authors %></td>
+	<td><%=f.description %></td>
+	<td><%=f.isbn %></td>
 	<td><%=f.created_at %></td>
 		<td><%=link_to("checkin",:controller =>'books',:action => 'checkin',:email => @member.email,:id => f.id.to_s)%></td>
 	</tr>
@@ -30,20 +30,20 @@
 <table class="table">
 	<tr>
 		
-		<th>TITLE</th>
-		<th>AUTHORS</th>
-		<th>DESCRIPTION</th>
-		<th>ISBN</th>
+		<th>title</th>
+		<th>authors</th>
+		<th>description</th>
+		<th>isbn</th>
 		
 		
 	</tr>
 
 	<%@find1.each do |f| %>
 	<tr>
-	<td><%=f.TITLE %></td>
-	<td><%=f.AUTHORS %></td>
-	<td><%=f.DESCRIPTION %></td>
-	<td><%=f.ISBN %></td>
+	<td><%=f.title %></td>
+	<td><%=f.authors %></td>
+	<td><%=f.description %></td>
+	<td><%=f.isbn %></td>
 	
 	</tr>
 	<% end %>

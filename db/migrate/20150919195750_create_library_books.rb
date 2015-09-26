@@ -2,11 +2,11 @@ class CreateLibraryBooks < ActiveRecord::Migration
   def change
     create_table :library_books do |t|
     	
-      t.string "ISBN",:limit =>50
-      t.string "TITLE", :default=>"",:null =>false
-      t.string "DESCRIPTION",:limit => 40
-       t.string "AUTHORS",:limit => 40
-        t.string "STATUS",:limit => 40
+      t.text "isbn",:limit =>50
+      t.text "title", :default=>"",:null =>false
+      t.text "description",:limit => 40
+       t.text "authors",:limit => 40
+        t.text "status",:limit => 40
       
       t.timestamps
     end

@@ -1,6 +1,6 @@
 class AlterAdmins < ActiveRecord::Migration
   def up
-  	add_column("library_admins","username",:string,:limit=>25,:after=>"email")
+  	add_column("library_admins","username",:text,:limit=>25,:after=>"email")
   	rename_column("library_admins" ,"password","hashed_password")
   	puts "**adding an index"
   	add_index("library_admins","username")

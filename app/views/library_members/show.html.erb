@@ -19,15 +19,15 @@
 
 <%=form_tag({:controller =>'books',:action =>'search'}, :method => "get") do %>
  <div class="input-append">
-<%= label_tag(:search, "Search by Title:") %>
+<%= label_tag(:search, "Search by title:") %>
 <%= hidden_field_tag(:id, @member.id.to_s) %>
   <%=text_field_tag(:search,params[:search],placeholder: "Search books") %>
   <select name="CATEGORIES">
-  <option value="ISBN">ISBN</option>
-  <option value="TITLE">TITLE</option>
-  <option value="AUTHORS">AUTHORS</option>
-  <option value="DESCRIPTION">DESCRIPTION</option>
-  <option value="STATUS">STATUS</option>
+  <option value="isbn">isbn</option>
+  <option value="title">title</option>
+  <option value="authors">authors</option>
+  <option value="description">description</option>
+  <option value="status">status</option>
 </select>
 
 <%=submit_tag("Search")%>
