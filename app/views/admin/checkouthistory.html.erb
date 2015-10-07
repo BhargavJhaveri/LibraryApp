@@ -3,7 +3,8 @@
 	<%= flash[:notice] %>
 </div>
 <% end %>
-
+<h1>Link to back</h1>
+<%=link_to("Link manage members ",:action =>'indexmember',:email => @admin.email)%>
 <h1>THESE ARE THE BOOKS THAT ARE CHECKED OUT AND NOT CHECKED IN</h1>
 	<table class="table">
 	<tr>
@@ -12,7 +13,7 @@
 		<th>authors</th>
 		<th>description</th>
 		<th>isbn</th>
-		<th>ISSUED AT</th>
+		<th>ISSUED AT</th><th>checkin</th>
 		
 	</tr>
    <%@array.each do |f| %>
@@ -23,7 +24,7 @@
 	<td><%=f.description %></td>
 	<td><%=f.isbn %></td>
 	<td><%=f.created_at %></td>
-	<td><%link_to("checkin",:controller =>'books',:action => 'checkin',:id => f.id.to_s)%></td>
+	<td><%= link_to("checkin",:controller =>'admin',:action =>'checkinmember',:id =>f.id.to_s,:email =>@admin.email ) %>%></td>
 	</tr>
 	<% end %>
 	</table>

@@ -3,6 +3,7 @@ class AdminController < ApplicationController
 	def index
     @Admin = LibraryAdmin.find_by_id(session[:admin_id])
     @admin=LibraryAdmin.order("created_at ASC")
+    @suggest=Suggestion.order("created_at ASC")
   end
   def show
       @admin=LibraryAdmin.find_by_id(params[:id])
@@ -57,7 +58,7 @@ end
   end
 
   def edit
-    @Admin=LibraryAdmin.find_by_id(params[:id]) 
+    @admin=LibraryAdmin.find_by_id(params[:id]) 
   end
   
   def managebooks
@@ -67,13 +68,15 @@ end
   
   def indexmember
     @members=LibraryMember.order("created_at ASC")
+    @admin=LibraryAdmin.find_by(:email => params[:email])
   end
   def createmember
+         @admin=LibraryAdmin.find_by(:email => params[:email])
      @member=LibraryMember.new(member_params)
 
     if @member.save
       flash[:notice]="Sucessfully created a member"
-      redirect_to(:controller => 'admin',:action => 'showmember',:id => @member.id.to_s)
+      redirect_to(:controller => 'admin',:action => 'showmember',:id => @member.id.to_s,:email =>@admin.email)
     else
       flash[:notice]="Try Again"
       render('newmember')
@@ -81,28 +84,34 @@ end
       end   
   end
   def newmember
+     @admin=LibraryAdmin.find_by(:email => params[:email])
     @member=LibraryMember.new
   end
   def showmember
+     @admin=LibraryAdmin.find_by(:email => params[:email])
     @member=LibraryMember.find_by_id(params[:id])
   end
   def editmember
+     @admin=LibraryAdmin.find_by(:email => params[:email])
      @member=LibraryMember.find_by_id(params[:id])
   end
   def destroymember
+     @admin=LibraryAdmin.find_by(:email => params[:email])
      @member=LibraryMember.find_by_id(params[:id])
      @member.destroy
      flash[:notice]="Sucessfully destroyed"
      redirect_to(:action =>'indexmember')
   end
   def deletemember
+     @admin=LibraryAdmin.find_by(:email => params[:email])
     @member=LibraryMember.find_by_id(params[:id])
   end
   def updatemember
+     @admin=LibraryAdmin.find_by(:email => params[:email])
     @member=LibraryMember.find_by_id(params[:id])
     if  @member.update(member_params)
       flash[:notice]="Sucessfully updated member"
-       redirect_to(:action => 'showmember',:id => @member.id.to_s)
+       redirect_to(:action => 'showmember',:id => @member.id.to_s,:email => @admin.email)
     else
       @member=LibraryMember.find_by_id(params[:id])
       flash[:notice]="Try Again"
@@ -125,6 +134,7 @@ def checkoutadmin
 end
  
  def checkouthistory
+  @admin=LibraryAdmin.find_by(:email => params[:email])
     @member=LibraryMember.find_by_id(params[:id])
     i=@member.email
     @find=Relationship.where(email: i).order("created_at DESC")
@@ -162,13 +172,17 @@ end
 
     flash[:notice]="you have Sucessfully checked out a book"
 
-    redirect_to(:controller =>'admin',:action =>'index')
+    redirect_to(:controller =>'books',:action =>'index',:id => @admin.id.to_s )
   end
 
    def checkin
     @book=LibraryBook.find_by_id(params[:id])
     @admin=LibraryAdmin.find_by(:email => params[:email])
+    if @book.library_admin.present?
      @admin.library_books.delete(@book)
+    elsif @book.library_member.present?
+      @book.library_member_id='nill'
+    end
     @book.status='check_in'
     @book.save
     k=@book.isbn
@@ -180,16 +194,72 @@ end
     
     end
      flash[:notice]="you have sucessfully checked in a book" 
-    redirect_to(:controller =>'admin',:action =>'index')
+   redirect_to(:controller =>'books',:action =>'index',:id => @admin.id.to_s )
+  end
+   def checkinmember
+    @book=LibraryBook.find_by_id(params[:id])
+    @admin=LibraryAdmin.find_by(:email => params[:email])
+    if @book.library_admin.present?
+     @admin.library_books.delete(@book)
+    elsif @book.library_member.present?
+      @book.library_member_id='nill'
+    end
+    @book.status='check_in'
+    @book.save
+    k=@book.isbn
+    @relation=Relationship.where(:isbn =>k)
+    @relation.each do |relation| 
+      relation.status='no'
+      relation.save
+   
+    
+    end
+     flash[:notice]="you have sucessfully checked in a book" 
+   redirect_to(:controller =>'admin',:action =>'indexmember',:email => @admin.email )
   end
 
-end
+
+ def addsuggestion
+    @suggest=Suggestion.find_by_id(params[:id])
+    @admin=LibraryAdmin.find_by(:email => params[:email])
+  end
+
+  def createsuggestion
+      @admin=LibraryAdmin.find_by(:email => params[:email])
+    @suggest=Suggestion.find_by_id(params[:id])
+    book=LibraryBook.new
+    book.title =suggest_params[:title]
+    book.isbn =suggest_params[:isbn]
+    book.authors=suggest_params[:authors]
+    book.description =suggest_params[:description]
+    book.status='check_in'
+
+    if  book.save
+      flash[:notice]="Sucessfully added book"
+      @suggest.destroy
+       redirect_to(:action => 'index')
+    else
+      @member=LibraryMember.find_by_id(params[:id])
+      flash[:notice]="Try Again"
+      render('editmember')
+    end
+  end
+
+  def deletesuggestion
+     @suggest=Suggestion.find_by_id(params[:id])
+    @suggest.destroy
+     redirect_to(:action => 'index')
+  end
 private
   def member_params
     params.require(:member).permit(:first_name,:Last_name,:email,:password)
   end
+private
+ def suggest_params
+    params.require(:suggest).permit(:isbn,:title,:authors,:description,:email)
+  end
 
-
+end
 private
   def admin_params
     params.require(:admin).permit(:first_name,:Last_name,:email,:password)

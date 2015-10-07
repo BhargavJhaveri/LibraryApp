@@ -4,7 +4,7 @@
 
 	<div class="col-md-6 col-md-offset-1">
 <h1>Edit Form</h1>
-<%= form_for(:member ,:url=> {:controller =>'admin',:action => 'update'}) do |f| %>
+<%= form_for(:admin ,:url=> {:controller =>'admin',:action => 'update',:id =>@admin.id.to_s}) do |f| %>
 <table>
 <tr>
 <td>Firstname</td>
@@ -19,6 +19,10 @@
 <td><%= f.text_field(:email) %></td>
 </tr>
 
+<tr>
+<td>Password</td>
+<td><%= f.text_field(:password)%></td>
+</tr>
 
 <td>
 <%=submit_tag("update",:class => "btn btn-primary") %> </td>

@@ -1,5 +1,7 @@
-<h1>Table of books</h1>
-
+<h1>Link to your dashboard</h1>
+<%= link_to("link to your dashboard",:controller => 'library_members',:action => 'show',:id => @member.id.to_s) %>
+<h2>Table of books</h2>
+<%= will_paginate @books %>
 <table class="table">
 	<tr>
 		
@@ -22,14 +24,22 @@
 	<td>
 	<%if book.library_member %>
 	<%=book.library_member.email %>
+	<%if book.library_admin %>
+	<%=book.library_admin.email %>
+	 <%end%>
      <%end %></td>
     
     <td>
 	<%if book.status=='check_in'%>
 	<%=link_to("Checkout",:controller =>'books',:action =>"checkoutbook",:id =>book.id.to_s,:email => @member.email)%>
+	<% else %>
+	<%if book.library_member.email != @member.email %>
+	<%=link_to("sendemail",:controller => 'books',:action => 'sendemail',:id =>book.id.to_s,:email =>@member.email)%>
+	<% end %>
 	<% end %>
 	
 	</td>
      </tr>
      <% end %>
      </table>
+     <%= will_paginate @books %>

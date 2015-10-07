@@ -1,0 +1,36 @@
+
+<div class="row">
+
+	<div class="col-md-6 col-md-offset-1">
+<h1>Sign Up Form</h1>
+<%= form_for(:suggest ,:url=> {:controller =>'library_members',:action => 'createsuggestion'}) do |f| %>
+<%= hidden_field_tag(:email, @member.email) %>
+<table >
+
+<tr>
+<td>Fill in your Email</td>
+<td><%= f.text_field(:email) %></td>
+</tr>
+<td>isbn</td>
+<td><%= f.text_field(:isbn) %></td>
+</tr>
+<tr>
+<td>title</td>
+<td><%= f.text_field(:title) %></td>
+</tr>
+<tr>
+<td>AUTHOR</td>
+<td><%= f.text_field(:authors) %></td>
+</tr>
+<tr>
+<td>description</td>
+<td><%= f.text_field(:description)%></td>
+</tr>
+<tr>
+<td>
+<%=submit_tag("Create suggestion",class: 'btn btn-primary') %> </td>
+</tr>
+</table>
+<% end %>
+</div>
+</div>

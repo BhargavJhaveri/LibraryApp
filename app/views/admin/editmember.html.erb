@@ -1,11 +1,12 @@
 <h3>Back to List</h3>
-<%=link_to("Back to Dashboard" ,:controller => 'admin',:action => 'indexmember')%>
+<%=link_to("Back to Dashboard" ,:controller => 'admin',:action => 'indexmember',:email => @admin.email)%>
 <div class="row">
 
 	<div class="col-md-6 col-md-offset-1">
 <h1>Edit Form</h1>
 
 <%= form_for(:member ,:url=> {:controller =>'admin',:action => 'updatemember',:id =>@member.id.to_s}) do |f| %>
+<%= hidden_field_tag(:email, @admin.email) %>
 <table>
 <tr>
 <td>Firstname</td>
@@ -18,6 +19,10 @@
 <tr>
 <td>Email</td>
 <td><%= f.text_field(:email) %></td>
+</tr>
+<tr>
+<td>Password</td>
+<td><%= f.text_field(:password)%></td>
 </tr>
 <tr>
 <td>

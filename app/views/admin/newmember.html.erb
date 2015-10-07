@@ -6,6 +6,7 @@
 <h1>New member Form</h1>
 
 <%= form_for(:member ,:url=> {:controller =>'admin',:action => 'createmember'}) do |f| %>
+<%= hidden_field_tag(:email, @admin.email) %>
 <table>
 <tr>
 <td>Firstname</td>

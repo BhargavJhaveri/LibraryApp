@@ -20,16 +20,20 @@
 	<td><%=member.email %></td>
 	
 	<td>
-	<%= link_to("show",:action =>'showmember',:id =>member.id.to_s) %>
-     <%= link_to("edit",:action =>'editmember',:id =>member.id.to_s ) %>
-     <%= link_to("delete",:action =>'deletemember',:id =>member.id.to_s) %>
-     <%= link_to("checkouthitory",:action =>'checkouthistory',:id =>member.id.to_s) %>
+	<%= link_to("show",:action =>'showmember',:id =>member.id.to_s,:email => @admin.email) %>
+     <%= link_to("edit",:action =>'editmember',:id =>member.id.to_s,:email => @admin.email ) %>
+     <% if !(member.library_books.present?) %>
+     <%= link_to("delete",:action =>'deletemember',:id =>member.id.to_s,:email => @admin.email) %>
+     <% else %>
+     Check in his books to delete
+     <%end%>
+     <%= link_to("checkouthitory",:action =>'checkouthistory',:id =>member.id.to_s,:email => @admin.email) %>
 
  </td>
      </tr>
      <% end %>
      </table>
      <h1>Add new member</h1>
-     <%= link_to("Add new Library member",:action => 'newmember')%>
+     <%= link_to("Add new Library member",:action => 'newmember',:email => @admin.email)%>
 
      

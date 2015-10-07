@@ -2,11 +2,11 @@
 <div class='row'>
 
 <div class="col-xs-2 " >
-<%=link_to('Edit your profile',:action => 'edit') %><br></div>
+<%=link_to('Edit your profile',:action => 'edit',:id => @Admin.id.to_s) %><br></div>
 <div class="col-xs-2 ">
 <%=link_to('manage books',:action => 'managebooks',:id => @Admin.id.to_s) %><br></div>
 <div class="col-xs-2 ">
-<%=link_to('manage library members',:action => 'indexmember') %><br></div>
+<%=link_to('manage library members',:action => 'indexmember',:email => @Admin.email) %><br></div>
 <div class="col-xs-2 ">
 <%= link_to("Add new Library Admin",:action => 'new')%></div>
 
@@ -40,11 +40,34 @@
 	<td>
 	<%= link_to("show",:action =>'show',:id =>admin.id.to_s) %>
      <%= link_to("edit",:action =>'edit',:id =>admin.id.to_s ) %>
+     <%if !(admin.email=='vravi2@ncsu.edu' && admin===@Admin) %>
      <%= link_to("delete",:action =>'delete',:id =>admin.id.to_s) %>
-
+     <% end %>
  </td>
      </tr>
      <% end %>
      </table>
+     <h1>Suggestions</h1>
+<table class='table'>
+	<tr>
+		
+		<th>Suggestion from</th>
+		<th>Suggestion title</th>
+
+		
+	</tr>
+	<%@suggest.each do |suggest| %>
+	<tr>
+	<td><%=suggest.email%></td>
+	<td><%=suggest.title %></td>
+	
+	
+	<td>
+	<%= link_to("Add the suggestion to books",:action =>'addsuggestion',:id => suggest.id,:email => @Admin.email) %>
+     <%= link_to("delete",:action =>'deletesuggestion',:id => suggest.id) %>
+     </tr>
+     <% end %>
+     </table>
+
 
 

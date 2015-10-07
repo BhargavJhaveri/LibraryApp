@@ -25,7 +25,9 @@ class BooksController < ApplicationController
 
   def update
     @admin=LibraryAdmin.find_by(:email => params[:email])
-    @book=LibraryBook.find_by_id(params[:id])
+
+    @book=LibraryBook.find_by_id(params[:id] )
+
     if  @book.update(book_params)
       flash[:notice]="you have sucessfully update the book"
        redirect_to(:action => 'show',:id => @book.id.to_s,:email => @admin.email)
@@ -45,8 +47,16 @@ class BooksController < ApplicationController
 
   def destroy
     @admin=LibraryAdmin.find_by(:email => params[:email])
-     LibraryBook.find_by_id(params[:id]).destroy
-     flash[:notice]="sucessfully destroyed the book"
+
+     @book=LibraryBook.find_by_id(params[:id])
+     if @book.status == 'check_in'
+      @book.destroy
+      flash[:notice]="sucessfully destroyed the book"
+    end
+    if @book.status=='checked_out'
+      flash[:notice]="First check in to delete book"
+    end
+     
      redirect_to(:action =>'index',:id =>@admin.id.to_s)
   end
 
@@ -64,7 +74,8 @@ class BooksController < ApplicationController
    def search
     @member=LibraryMember.find_by_id(params[:id])
     if params[:search]
-      @books=LibraryBook.search(params[:search],params[:CATEGORIES]).order("created_at DESC")
+      @books=LibraryBook.search(params[:search],params[:CATEGORIES]).order("created_at DESC").paginate(:per_page => 5, :page => params[:page])
+
       else
         @books=LibraryBook.order("created_at DESC")
       end
@@ -81,7 +92,7 @@ class BooksController < ApplicationController
     l=@member.email
     Relationship.create(:isbn => k,:email =>l,:status =>'yes')
     flash[:notice]="you have sucessfully checked out a book"
-    redirect_to(:controller =>'library_members',:action =>'show',:id => @member.id.to_s)
+    redirect_to :back
   end
   def checkin
     @book=LibraryBook.find_by_id(params[:id])
@@ -89,22 +100,42 @@ class BooksController < ApplicationController
     @book.status='check_in'
     @book.save
     @member.library_books.delete(@book)
+
     k=@book.isbn
     @relation=Relationship.where(:isbn =>k)
     @relation.each do |relation| 
       relation.status='no'
       relation.save
+   
+  end
+
+ @mail=Mailer.where(:isbn => @book.isbn)
+    @mail.each do |mail|
+    LibraryMemberMailer.checkin_email(mail,@book).deliver
+    mail.destroy
     end
     redirect_to(:controller =>'library_members',:action =>'show',:id => @member.id.to_s)
     flash[:notice]="you have sucessfully checked in a book"
-  end
+ 
+end
 
     
     
 
   def checkouthistory
+    @admin=LibraryAdmin.find_by(:email => params[:email])
     @book=LibraryBook.find_by_id(params[:id])
     @find=Relationship.where(:isbn => @book.isbn).order("created_at DESC")
+
+      end
+  
+def sendemail
+
+    @member=LibraryMember.find_by(:email => params[:email])
+    @book=LibraryBook.find_by_id(params[:id])
+    Mailer.create(:isbn => @book.isbn.to_s,:email => @member.email.to_s)
+    flash[:notice]="Email will be sent when the book is available"
+    redirect_to :back
 
       end
 

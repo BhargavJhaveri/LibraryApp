@@ -1,3 +1,5 @@
+<h1>Back to manage books</h1>
+<%= link_to("back",:controller => 'books',:action => 'index',:id => @admin.id.to_s) %>
 <h1>Table of books</h1>
 
 <table class="table">
@@ -18,8 +20,17 @@
 	<td><%=book.description %></td>
 	<td><%=book.status %></td>
 	<td>
+	<%if book.library_member %>
+	<%=book.library_member.email %>
+	<%if book.library_admin %>
+	<%=book.library_admin.email %>
+	 <%end%>
+     <%end %></td>
+	<td>
 	<%if book.status=='check_in'%>
 	<%=link_to("Checkout",:controller =>'admin',:action =>"checkoutbook",:id =>book.id.to_s,:email => @admin.email)%>
+	<% else %>
+   <%=link_to("Checkin",:controller =>'admin',:action =>"checkin",:id =>book.id.to_s,:email => @admin.email)%>
 	<% end %>
 	
 	</td>
