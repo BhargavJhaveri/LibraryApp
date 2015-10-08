@@ -18,6 +18,6 @@ All basic functionalities are implemented,**he can request to notify by  email**
 We cannot delete a book that is checkedout.you need to check in the book and delete
 ,You cannot delete library member who has checked out book you need to check in his books before deleting 
 - **Test**
-All tests are implememted in rspec,Unit test is wriiten for library members model,Functional test is written for controller. 
+All tests are implememted in rspec,Unit test is wriiten for library members model,Functional test is written for library member controller. 
                 
 
