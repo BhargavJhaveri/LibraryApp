@@ -9,8 +9,9 @@ The flash messages apperars if form filled is invalid or page reloads.For some f
 validations are:1. you need to fill all details
                 2. A library member or admin all have distinct email id
                 3. a book have unique isbn 1
-- ** Functions of admin **
+-  ** Functions of admin **
 Admin can edit his profile,delete other admin members other than himself,And all basic functions are implemented,He can check out book for librarymembers 
+
 -  ** Functions of librarymembers **
 All basic functionalities are implemented,**he can request to notify by  email**,**he can give suggestions** 3
 -  **edge case **
