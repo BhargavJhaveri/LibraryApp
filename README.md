@@ -9,12 +9,12 @@ The flash messages apperars if form filled is invalid or page reloads.For some f
 validations are:  you need to fill all details,
                  A library member or admin all have distinct email id,
                  a book have unique isbn 
--  ** Functions of admin **
+-  **Functions of admin**
 Admin can edit his profile,delete other admin members other than himself,And all basic functions are implemented,He can check out book for librarymembers 
 
--  ** Functions of librarymembers **
+-  **Functions of librarymembers**
 All basic functionalities are implemented,**he can request to notify by  email**,**he can give suggestions** 
--  **edge case **
+-  **edge case**
 We cannot delete a book that is checkedout.you need to check in the book and delete
 ,You cannot delete library member who has checked out book you need to check in his books before deleting 
 - **Test**
