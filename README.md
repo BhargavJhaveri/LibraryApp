@@ -1,4 +1,4 @@
-The repository is controller branch and not master
+
 
 The preconfigured admin id is vravi2@ncsu.edu and password id viswa123
 
