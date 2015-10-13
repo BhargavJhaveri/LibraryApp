@@ -13,7 +13,7 @@ validations are:  you need to fill all details,
 Admin can edit his profile,delete other admin members other than himself,And all basic functions are implemented,He can check out book for librarymembers 
 
 -  **Functions of librarymembers**
-All basic functionalities are implemented,**he can request to notify by  email**,**he can give suggestions** 
+All basic functionalities are implemented,**he can request to notify by  email**,**he can give suggestions** To get notified by email you need to request notify by mail. when the member who tooked the book check in the book you will recieve mail that book is available.This uses gmail service so you get mail libraryncsu@gmail.com
 -  **edge case**
 We cannot delete a book that is checkedout.you need to check in the book and delete
 ,You cannot delete library member who has checked out book you need to check in his books before deleting 
